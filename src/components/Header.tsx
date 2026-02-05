@@ -1,7 +1,7 @@
  import { useState } from 'react';
  import { Link } from 'react-router-dom';
  import { SiteSettings } from '@/lib/supabase';
- import { Menu, X } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
  
  interface HeaderProps {
    settings: SiteSettings | null;
@@ -32,6 +32,15 @@
            <a href="#servicios" className="text-sm text-muted-foreground transition-colors hover:text-primary">
              Servicios
            </a>
+            <a 
+              href={`https://wa.me/${settings?.whatsapp_number || ''}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Contacto
+            </a>
            <Link to="/admin" className="text-sm text-muted-foreground transition-colors hover:text-primary">
              Admin
            </Link>
@@ -57,6 +66,16 @@
              >
                Servicios
              </a>
+              <a 
+                href={`https://wa.me/${settings?.whatsapp_number || ''}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <MessageCircle className="h-4 w-4" />
+                Contacto
+              </a>
              <Link 
                to="/admin" 
                className="text-muted-foreground transition-colors hover:text-primary"
