@@ -18,16 +18,18 @@
    updated_at: string;
  }
  
- export interface Service {
-   id: string;
-   title: string;
-   short_description: string;
-   full_description: string | null;
-   image_url: string | null;
-   features: string[];
-   price: string | null;
-   order_index: number;
-   is_active: boolean;
-   created_at: string;
-   updated_at: string;
- }
+export interface Service {
+  id: string;
+  title: string;
+  short_description: string;
+  full_description: string | null;
+  image_url: string | null;
+  images: string[];
+  video_url: string | null;
+  features: string[];
+  price: string | null;
+  order_index: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}

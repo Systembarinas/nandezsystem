@@ -33,18 +33,21 @@ const Index = () => {
         <Hero settings={settings} />
         
         {/* Services Section */}
-        <section id="servicios" className="py-20">
+        <section id="servicios" className="py-24">
           <div className="container px-4">
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                Nuestros <span className="gradient-text">Sistemas</span>
+            <div className="mb-16 text-center">
+              <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-bold text-primary mb-4">
+                Nuestros Sistemas
+              </span>
+              <h2 className="mb-4 text-3xl font-extrabold md:text-5xl font-display">
+                Soluciones que <span className="gradient-text">transforman</span> tu negocio
               </h2>
-              <p className="mx-auto max-w-2xl text-muted-foreground">
-                Soluciones diseñadas para optimizar y automatizar tu negocio
+              <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
+                Software profesional diseñado para optimizar y automatizar cada aspecto de tu empresa
               </p>
             </div>
             
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service, index) => (
                 <ServiceCard
                   key={service.id}
