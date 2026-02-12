@@ -145,41 +145,9 @@ export function ServiceForm({ service, onSubmit, onCancel }: ServiceFormProps) {
             />
           </div>
 
-          {/* Main Image */}
-          <div className="space-y-2">
-            <Label>Imagen Principal</Label>
-            <div className="flex items-start gap-4">
-              {formData.image_url && (
-                <img
-                  src={formData.image_url}
-                  alt="Preview"
-                  className="h-24 w-24 rounded-lg object-cover"
-                />
-              )}
-              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-border px-4 py-3 transition-colors hover:bg-muted">
-                {uploading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <Upload className="h-4 w-4" />
-                )}
-                <span className="text-sm">Subir Imagen</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) handleImageUpload(file);
-                  }}
-                  disabled={uploading}
-                />
-              </label>
-            </div>
-          </div>
-
           {/* Gallery Images */}
           <div className="space-y-2">
-            <Label>Galería de Imágenes</Label>
+            <Label>Imágenes (la primera será la imagen principal)</Label>
             <div className="flex flex-wrap gap-3">
               {formData.images.map((img, index) => (
                 <div key={index} className="relative group">

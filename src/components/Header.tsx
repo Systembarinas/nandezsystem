@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { SiteSettings } from '@/lib/supabase';
 import { Menu, X, MessageCircle } from 'lucide-react';
 
@@ -13,7 +12,7 @@ export function Header({ settings }: HeaderProps) {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           {settings?.logo_url ? (
             <img 
               src={settings.logo_url} 
@@ -25,7 +24,7 @@ export function Header({ settings }: HeaderProps) {
               {settings?.site_name || 'Nandez Systems'}
             </span>
           )}
-        </Link>
+        </a>
         
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 md:flex">
@@ -41,9 +40,6 @@ export function Header({ settings }: HeaderProps) {
             <MessageCircle className="h-4 w-4" />
             Contacto
           </a>
-          <Link to="/admin" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
-            Admin
-          </Link>
         </nav>
         
         {/* Mobile menu button */}
@@ -76,13 +72,6 @@ export function Header({ settings }: HeaderProps) {
               <MessageCircle className="h-4 w-4" />
               Contacto
             </a>
-            <Link 
-              to="/admin" 
-              className="font-medium text-muted-foreground transition-colors hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Admin
-            </Link>
           </div>
         </nav>
       )}
