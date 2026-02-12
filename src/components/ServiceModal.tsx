@@ -36,9 +36,9 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
 
   return (
     <Dialog open={open} onOpenChange={() => { onClose(); setCurrentImageIndex(0); }}>
-      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto border-border bg-card">
+      <DialogContent className="max-h-[90vh] w-[95vw] max-w-2xl overflow-y-auto border-border bg-card p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-extrabold gradient-text font-display">
+          <DialogTitle className="text-xl sm:text-2xl font-extrabold gradient-text font-display">
             {service.title}
           </DialogTitle>
         </DialogHeader>
@@ -49,7 +49,7 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
             <img 
               src={allImages[currentImageIndex]} 
               alt={`${service.title} - ${currentImageIndex + 1}`}
-              className="h-64 w-full object-cover transition-all duration-500"
+              className="h-48 sm:h-64 w-full object-cover transition-all duration-500"
             />
             {allImages.length > 1 && (
               <>
@@ -82,11 +82,11 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
 
         {/* Video */}
         {service.video_url && (
-          <div className="overflow-hidden rounded-xl">
+          <div className="relative w-full overflow-hidden rounded-xl" style={{ paddingBottom: '56.25%' }}>
             <iframe
               src={service.video_url.replace('watch?v=', 'embed/')}
               title={`Video de ${service.title}`}
-              className="aspect-video w-full"
+              className="absolute inset-0 h-full w-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
@@ -101,7 +101,7 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
           {service.features && service.features.length > 0 && (
             <div>
               <h4 className="mb-3 font-bold text-foreground font-display">Características:</h4>
-              <ul className="grid gap-2 sm:grid-cols-2">
+              <ul className="grid gap-2 grid-cols-1 sm:grid-cols-2">
                 {service.features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
