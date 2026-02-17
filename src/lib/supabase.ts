@@ -6,17 +6,18 @@
  export const supabase = createClient(supabaseUrl, supabaseAnonKey);
  
  // Types
- export interface SiteSettings {
-   id: string;
-   site_name: string;
-   site_description: string;
-   logo_url: string | null;
-   hero_image_url: string | null;
-   whatsapp_number: string;
-   footer_text: string;
-   created_at: string;
-   updated_at: string;
- }
+export interface SiteSettings {
+  id: string;
+  site_name: string;
+  site_description: string;
+  logo_url: string | null;
+  hero_image_url: string | null;
+  whatsapp_number: string;
+  footer_text: string;
+  custom_texts: Record<string, string> | null;
+  created_at: string;
+  updated_at: string;
+}
  
 export interface Service {
   id: string;

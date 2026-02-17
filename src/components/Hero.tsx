@@ -1,4 +1,5 @@
 import { SiteSettings } from '@/lib/supabase';
+import { parseColoredText, getText } from '@/lib/coloredText';
 import { ArrowDown, Shield, Zap, HeadphonesIcon } from 'lucide-react';
 
 interface HeroProps {
@@ -6,9 +7,13 @@ interface HeroProps {
 }
 
 export function Hero({ settings }: HeroProps) {
+  const t = (key: string) => getText(settings?.custom_texts, key);
+
   const whatsappUrl = settings?.whatsapp_number
     ? `https://wa.me/${settings.whatsapp_number.replace(/\D/g, '')}?text=Hola, quiero información sobre sus sistemas`
     : '#servicios';
+
+  const titleLines = t('hero_title').split('\n');
 
   return (
     <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-gradient-hero">
@@ -17,7 +22,6 @@ export function Hero({ settings }: HeroProps) {
         <div className="absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-primary/5 blur-[120px] animate-float" />
         <div className="absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-secondary/5 blur-[120px] animate-float" style={{ animationDelay: '-3s' }} />
         <div className="absolute left-1/3 top-1/4 h-[300px] w-[300px] rounded-full bg-accent/5 blur-[100px] animate-float" style={{ animationDelay: '-5s' }} />
-        {/* Grid pattern */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: 'radial-gradient(circle, hsl(250, 75%, 55%) 1px, transparent 1px)',
           backgroundSize: '40px 40px'
@@ -36,17 +40,20 @@ export function Hero({ settings }: HeroProps) {
           
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-5 py-2 mb-8 animate-fade-in">
             <Zap className="h-4 w-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">Software que impulsa resultados</span>
+            <span className="text-sm font-semibold text-primary">{t('hero_badge')}</span>
           </div>
 
           <h1 className="mb-6 text-4xl font-black leading-[1.1] animate-fade-in md:text-6xl lg:text-7xl font-display tracking-tight">
-            <span className="text-foreground">Automatiza tu negocio.</span>
-            <br />
-            <span className="gradient-text">Multiplica tus ganancias.</span>
+            {titleLines.map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {parseColoredText(line)}
+              </span>
+            ))}
           </h1>
           
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground animate-fade-in md:text-xl leading-relaxed" style={{ animationDelay: '0.15s' }}>
-            Sistemas profesionales diseñados para que vendas más, pierdas menos tiempo y tengas el control total de tu empresa desde cualquier dispositivo.
+            {t('hero_subtitle')}
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
@@ -56,13 +63,13 @@ export function Hero({ settings }: HeroProps) {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2.5 rounded-2xl bg-gradient-primary px-8 py-4 font-bold text-primary-foreground shadow-glow transition-all hover:shadow-glow-lg hover:scale-[1.03] active:scale-[0.98] text-lg"
             >
-              Solicitar demo gratis
+              {t('hero_cta_primary')}
             </a>
             <a 
               href="#servicios" 
               className="group inline-flex items-center gap-2 rounded-2xl border-2 border-border bg-card px-8 py-4 font-bold text-foreground transition-all hover:border-primary/30 hover:shadow-card"
             >
-              Ver soluciones
+              {t('hero_cta_secondary')}
               <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
             </a>
           </div>
@@ -74,8 +81,8 @@ export function Hero({ settings }: HeroProps) {
                 <Shield className="h-5 w-5 text-secondary" />
               </div>
               <div className="text-left">
-                <p className="text-sm font-bold text-foreground">100% Seguro</p>
-                <p className="text-xs text-muted-foreground">Datos protegidos</p>
+                <p className="text-sm font-bold text-foreground">{t('trust_1_title')}</p>
+                <p className="text-xs text-muted-foreground">{t('trust_1_subtitle')}</p>
               </div>
             </div>
             <div className="flex items-center gap-3 justify-center sm:justify-start">
@@ -83,8 +90,8 @@ export function Hero({ settings }: HeroProps) {
                 <Zap className="h-5 w-5 text-accent" />
               </div>
               <div className="text-left">
-                <p className="text-sm font-bold text-foreground">Rápido</p>
-                <p className="text-xs text-muted-foreground">Listo en minutos</p>
+                <p className="text-sm font-bold text-foreground">{t('trust_2_title')}</p>
+                <p className="text-xs text-muted-foreground">{t('trust_2_subtitle')}</p>
               </div>
             </div>
             <div className="flex items-center gap-3 justify-center sm:justify-start">
@@ -92,8 +99,8 @@ export function Hero({ settings }: HeroProps) {
                 <HeadphonesIcon className="h-5 w-5 text-primary" />
               </div>
               <div className="text-left">
-                <p className="text-sm font-bold text-foreground">Soporte 24/7</p>
-                <p className="text-xs text-muted-foreground">Siempre contigo</p>
+                <p className="text-sm font-bold text-foreground">{t('trust_3_title')}</p>
+                <p className="text-xs text-muted-foreground">{t('trust_3_subtitle')}</p>
               </div>
             </div>
           </div>
