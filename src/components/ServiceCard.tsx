@@ -19,12 +19,12 @@ export function ServiceCard({ service, onClick, index }: ServiceCardProps) {
       onClick={onClick}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden bg-muted flex items-center justify-center">
         {mainImage ? (
           <img 
             src={mainImage} 
             alt={service.title}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-hero">
