@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Check, ChevronLeft, ChevronRight, Play, X, ZoomIn, Star, ShieldCheck, MessageCircle } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, Play, Star, ShieldCheck, MessageCircle } from 'lucide-react';
 
 interface ServiceModalProps {
   service: Service | null;
@@ -17,7 +17,7 @@ interface ServiceModalProps {
 
 export function ServiceModal({ service, open, onClose, whatsappNumber }: ServiceModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+  
   const hasVideoInitial = !!service?.video_url;
   const [activeTab, setActiveTab] = useState<'gallery' | 'video'>(hasVideoInitial ? 'video' : 'gallery');
 
@@ -68,17 +68,13 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
             {activeTab === 'gallery' && allImages.length > 0 && (
               <div className="relative">
                 <div 
-                  className="relative flex items-center justify-center cursor-zoom-in overflow-hidden bg-muted min-h-[200px] max-h-[70vh]" 
-                  onClick={() => setLightboxOpen(true)}
+                  className="relative flex items-center justify-center overflow-hidden bg-muted min-h-[200px] max-h-[70vh]" 
                 >
                   <img 
                     src={allImages[currentImageIndex]} 
                     alt={`${service.title} - ${currentImageIndex + 1}`}
                     className="max-h-[70vh] w-full object-contain transition-all duration-500"
                   />
-                  <div className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-card/80 backdrop-blur-sm text-foreground shadow-md">
-                    <ZoomIn className="h-4 w-4" />
-                  </div>
                 </div>
                 {allImages.length > 1 && (
                   <>
@@ -200,43 +196,7 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
         </DialogContent>
       </Dialog>
 
-      {/* Lightbox */}
-      {lightboxOpen && allImages.length > 0 && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/90 backdrop-blur-sm" onClick={() => setLightboxOpen(false)}>
-          <button className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-card/20 text-primary-foreground hover:bg-card/40 transition-all">
-            <X className="h-6 w-6" />
-          </button>
-          <img 
-            src={allImages[currentImageIndex]} 
-            alt={service.title}
-            className="max-h-[90vh] max-w-[95vw] object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
-          {allImages.length > 1 && (
-            <>
-              <button onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                className="absolute left-4 flex h-12 w-12 items-center justify-center rounded-full bg-card/20 text-primary-foreground hover:bg-card/40 transition-all"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                className="absolute right-4 flex h-12 w-12 items-center justify-center rounded-full bg-card/20 text-primary-foreground hover:bg-card/40 transition-all"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-            </>
-          )}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-            {allImages.map((_, i) => (
-              <button
-                key={i}
-                onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(i); }}
-                className={`h-2.5 rounded-full transition-all ${i === currentImageIndex ? 'bg-primary-foreground w-8' : 'bg-primary-foreground/40 w-2.5'}`}
-              />
-            ))}
-          </div>
-        </div>
-      )}
+    
     </>
   );
 }
