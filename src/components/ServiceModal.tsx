@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Service } from '@/lib/supabase';
 import {
   Dialog,
@@ -17,9 +17,14 @@ interface ServiceModalProps {
 
 export function ServiceModal({ service, open, onClose, whatsappNumber }: ServiceModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  const hasVideoInitial = !!service?.video_url;
-  const [activeTab, setActiveTab] = useState<'gallery' | 'video'>(hasVideoInitial ? 'video' : 'gallery');
+  const [activeTab, setActiveTab] = useState<'gallery' | 'video'>('gallery');
+
+  useEffect(() => {
+    if (open && service) {
+      setCurrentImageIndex(0);
+      setActiveTab(service.video_url ? 'video' : 'gallery');
+    }
+  }, [open, service]);
 
   if (!service) return null;
 
