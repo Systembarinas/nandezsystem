@@ -18,7 +18,8 @@ interface ServiceModalProps {
 export function ServiceModal({ service, open, onClose, whatsappNumber }: ServiceModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'gallery' | 'video'>('gallery');
+  const hasVideoInitial = !!service?.video_url;
+  const [activeTab, setActiveTab] = useState<'gallery' | 'video'>(hasVideoInitial ? 'video' : 'gallery');
 
   if (!service) return null;
 
@@ -30,6 +31,9 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
 
   const hasVideo = !!service.video_url;
 
+  // Reset active tab when service changes
+  const videoFirst = hasVideo;
+
   const whatsappUrl = whatsappNumber 
     ? `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=Hola, me interesa: *${encodeURIComponent(service.title)}*. ¿Me pueden dar más información?`
     : null;
@@ -39,7 +43,7 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
 
   return (
     <>
-      <Dialog open={open} onOpenChange={() => { onClose(); setCurrentImageIndex(0); setActiveTab('gallery'); }}>
+      <Dialog open={open} onOpenChange={() => { onClose(); setCurrentImageIndex(0); setActiveTab(videoFirst ? 'video' : 'gallery'); }}>
         <DialogContent className="max-h-[92vh] w-[95vw] max-w-3xl overflow-y-auto border-border bg-card p-0 rounded-2xl gap-0">
           {/* Media section */}
           <div className="relative">
@@ -64,13 +68,13 @@ export function ServiceModal({ service, open, onClose, whatsappNumber }: Service
             {activeTab === 'gallery' && allImages.length > 0 && (
               <div className="relative">
                 <div 
-                  className="relative aspect-video cursor-zoom-in overflow-hidden bg-muted" 
+                  className="relative flex items-center justify-center cursor-zoom-in overflow-hidden bg-muted min-h-[200px] max-h-[70vh]" 
                   onClick={() => setLightboxOpen(true)}
                 >
                   <img 
                     src={allImages[currentImageIndex]} 
                     alt={`${service.title} - ${currentImageIndex + 1}`}
-                    className="h-full w-full object-cover transition-all duration-500"
+                    className="max-h-[70vh] w-full object-contain transition-all duration-500"
                   />
                   <div className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-card/80 backdrop-blur-sm text-foreground shadow-md">
                     <ZoomIn className="h-4 w-4" />
