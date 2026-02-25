@@ -89,20 +89,6 @@ const Index = () => {
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 {t('cta_subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="h-5 w-5 text-secondary" />
-                  <span>{t('cta_benefit_1')}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="h-5 w-5 text-secondary" />
-                  <span>{t('cta_benefit_2')}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="h-5 w-5 text-secondary" />
-                  <span>{t('cta_benefit_3')}</span>
-                </div>
-              </div>
               {whatsappUrl && (
                 <a
                   href={whatsappUrl}

@@ -31,7 +31,6 @@ export function ServiceCard({ service, onClick, index }: ServiceCardProps) {
             <span className="text-6xl">💻</span>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
         
         {/* Badges */}
         <div className="absolute top-3 left-3 flex gap-2">
@@ -46,15 +45,11 @@ export function ServiceCard({ service, onClick, index }: ServiceCardProps) {
             </span>
           )}
         </div>
-        
-        {/* Title overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <h3 className="text-xl font-extrabold text-primary-foreground drop-shadow-lg font-display leading-tight">
-            {service.title}
-          </h3>
-        </div>
       </div>
       <CardContent className="p-5 space-y-4">
+        <h3 className="text-lg font-extrabold text-foreground font-display leading-tight">
+          {service.title}
+        </h3>
         <p className="line-clamp-2 text-sm text-muted-foreground leading-relaxed">
           {service.short_description}
         </p>
