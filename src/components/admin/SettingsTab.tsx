@@ -22,13 +22,6 @@ const TEXT_FIELDS: { key: string; label: string; multiline?: boolean; group: str
   { key: 'hero_subtitle', label: 'Subtítulo del Hero', multiline: true, group: 'Hero' },
   { key: 'hero_cta_primary', label: 'Botón Principal', group: 'Hero' },
   { key: 'hero_cta_secondary', label: 'Botón Secundario', group: 'Hero' },
-  // Trust
-  { key: 'trust_1_title', label: 'Indicador 1 - Título', group: 'Indicadores de Confianza' },
-  { key: 'trust_1_subtitle', label: 'Indicador 1 - Subtítulo', group: 'Indicadores de Confianza' },
-  { key: 'trust_2_title', label: 'Indicador 2 - Título', group: 'Indicadores de Confianza' },
-  { key: 'trust_2_subtitle', label: 'Indicador 2 - Subtítulo', group: 'Indicadores de Confianza' },
-  { key: 'trust_3_title', label: 'Indicador 3 - Título', group: 'Indicadores de Confianza' },
-  { key: 'trust_3_subtitle', label: 'Indicador 3 - Subtítulo', group: 'Indicadores de Confianza' },
   // Services
   { key: 'services_badge', label: 'Badge de Servicios', group: 'Sección Servicios' },
   { key: 'services_title', label: 'Título de Servicios', multiline: true, group: 'Sección Servicios' },

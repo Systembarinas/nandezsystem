@@ -9,7 +9,7 @@ import { useSiteSettings } from '@/hooks/useSiteSettings';
 import { useServices } from '@/hooks/useServices';
 import { Service } from '@/lib/supabase';
 import { parseColoredText, getText } from '@/lib/coloredText';
-import { Loader2, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Loader2, ArrowRight } from 'lucide-react';
 
 const Index = () => {
   const { settings, loading: settingsLoading } = useSiteSettings();
