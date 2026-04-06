@@ -73,37 +73,6 @@ export function Hero({ settings }: HeroProps) {
               <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
             </a>
           </div>
-
-          {/* Trust indicators */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.45s' }}>
-            <div className="flex items-center gap-3 justify-center sm:justify-start">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10">
-                <Shield className="h-5 w-5 text-secondary" />
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-bold text-foreground">{t('trust_1_title')}</p>
-                <p className="text-xs text-muted-foreground">{t('trust_1_subtitle')}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 justify-center sm:justify-start">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10">
-                <Zap className="h-5 w-5 text-accent" />
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-bold text-foreground">{t('trust_2_title')}</p>
-                <p className="text-xs text-muted-foreground">{t('trust_2_subtitle')}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 justify-center sm:justify-start">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                <HeadphonesIcon className="h-5 w-5 text-primary" />
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-bold text-foreground">{t('trust_3_title')}</p>
-                <p className="text-xs text-muted-foreground">{t('trust_3_subtitle')}</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
