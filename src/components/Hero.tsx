@@ -1,6 +1,6 @@
 import { SiteSettings } from '@/lib/supabase';
 import { parseColoredText, getText } from '@/lib/coloredText';
-import { ArrowDown, Shield, Zap, HeadphonesIcon } from 'lucide-react';
+import { ArrowDown, Zap } from 'lucide-react';
 
 interface HeroProps {
   settings: SiteSettings | null;
